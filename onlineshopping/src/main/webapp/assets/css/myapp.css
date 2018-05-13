@@ -18,7 +18,9 @@ body {
   }
 }
 
-
+footer{
+	margin: 0;
+}
 
 /*
 	custom Styling
@@ -38,6 +40,4 @@ body {
 	bottom: 15px;
 	height: 40px;
 	width: 100%;
-	padding-left: 100px;
-	
 }

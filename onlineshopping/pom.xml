@@ -13,7 +13,15 @@
 		<spring.version>5.0.5.RELEASE</spring.version>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+
+		<!-- Link Backend Project -->
+		<dependency>
+			<groupId>net.sam</groupId>
+			<artifactId>shoppingbackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- JAVAEE -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
