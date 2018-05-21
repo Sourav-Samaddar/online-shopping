@@ -11,8 +11,8 @@
    http://www.springframework.org/schema/mvc/spring-mvc.xsd
    ">
    
-   <context:component-scan base-package="net.sam.onlineshopping.controller"/>
-   <context:component-scan base-package="net.sam.shoppingbackend.daoimpl"/>
+   <context:component-scan base-package="net.sam.onlineshopping"/>
+   <context:component-scan base-package="net.sam.shoppingbackend"/>
    <bean id="viewResolver"
    			class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
    

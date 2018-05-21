@@ -22,6 +22,7 @@
 <title>Online Shopping - ${title}</title>
 <script type="text/javascript">
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}';
 	//alert(menu);
 </script>
 
@@ -30,6 +31,12 @@
 
 <!-- Bootstrap Flatly Theme -->
 <link href="${css}/bootstrap-flatly-theme.css" rel="stylesheet">
+
+<!-- Bootstrap Datatable -->
+<link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
+
+<!-- Bootstrap for glyphIcon -->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -67,6 +74,10 @@
 				<%@ include file="listProducts.jsp"%>
 			</c:if>
 			
+			<!-- Load a Single Product -->
+			<c:if test="${userClickShowProduct == true}">
+				<%@ include file="singleProduct.jsp"%>
+			</c:if>
 		</div>
 		
 		<!-- Footer -->
@@ -75,6 +86,12 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.min.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
+		
+		<!-- Datatable Plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!-- Datatable bootstarp Plugin -->
+		<script src="${js}/dataTables.bootstrap4.js"></script>
 
 		<!-- Self coded Java Script -->
 		<script src="${js}/myapp.js"></script>
