@@ -27,6 +27,7 @@
 </script>
 
 <!-- Bootstrap core CSS -->
+
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
 <!-- Bootstrap Flatly Theme -->
@@ -37,6 +38,7 @@
 
 <!-- Bootstrap for glyphIcon -->
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
 
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -78,6 +80,11 @@
 			<c:if test="${userClickShowProduct == true}">
 				<%@ include file="singleProduct.jsp"%>
 			</c:if>
+			
+			<!-- Load a Manage Products -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@ include file="manageProducts.jsp"%>
+			</c:if>
 		</div>
 		
 		<!-- Footer -->
@@ -85,6 +92,10 @@
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.min.js"></script>
+		
+		<!-- Jquery Validator -->
+		<script src="${js}/jquery.validate.js"></script>
+		
 		<script src="${js}/bootstrap.bundle.min.js"></script>
 		
 		<!-- Datatable Plugin -->
@@ -92,6 +103,9 @@
 		
 		<!-- Datatable bootstarp Plugin -->
 		<script src="${js}/dataTables.bootstrap4.js"></script>
+		
+		<!-- BootBox -->
+		<script src="${js}/bootbox.min.js"></script>
 
 		<!-- Self coded Java Script -->
 		<script src="${js}/myapp.js"></script>

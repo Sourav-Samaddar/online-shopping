@@ -6,6 +6,9 @@ $(function() {
 	case 'Contact Us':
 		$('#contact').addClass('active');
 		break;
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
 	case 'All Products':
 		$('#listAllProducts').addClass('active');
 		break;
@@ -89,4 +92,187 @@ $(function() {
 			]
 		});
 	}
+	var $alert = $('.alert');
+	
+	if($alert.length){
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		}, 3000);
+	}
+	
+	//-----------Manage Product Activation and Deactivation--------------------
+	
+	$('.switch input[type="checkbox"]').on('change',function(){
+		var checkbox = $(this);
+		var checked = checkbox.prop('checked');
+		var dMsg = (checked)?'You want to activate the product':
+							'You want to deactivate the product';
+		var value = checkbox.prop('value');
+		
+		bootbox.confirm({
+			size:'medium',
+			title:'Product Activation and Deactivation',
+			message:dMsg,
+			callback: function(confirmed){
+				if(confirmed){
+					console.log(value);
+					bootbox.alert({
+						size:'medium',
+						title:'information',
+						message:'You are going to perform operation on product'+value
+					});
+				}
+				else{
+					checkbox.prop('checked',!checked);
+				}
+			}
+		});
+	});
+	
+	//---------- Manage product Data Table -----------------
+	
+	var $table = $('#adminProductTable');
+
+	if ($table.length) {
+		
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
+		
+		$table.DataTable({
+			lengthMenu : [[30,50,100,-1],['30 Records','50 Records','100 Records','All']],
+			pageLength: 30,
+			ajax : {
+				url : jsonUrl,
+				dataSrc : ''
+			},
+			columns : [
+				{
+					data : 'id'
+				},
+				{
+					data : 'code',
+					bSortable : false,
+					mRender : function(data, type, row){
+						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="adminDataTableImg" />';
+					}
+				},
+				{
+					data : 'brand'
+				},
+				{
+					data : 'name'
+				},
+				{
+					data : 'quantity',
+					mRender : function(data, type, row){
+						if(data < 1){
+							return '<span style="color:red">Out of Stock!</span>';
+						}
+						return data;
+					}
+					
+				},
+				{
+					data : 'unitprice',
+					mRender : function(data, type, row){
+						return '&#8377; '+data
+					}
+				},
+				
+				{
+					data : 'active',
+					bSortable : false,
+					mRender : function(data, type, row){
+						var str = '';
+						if(data){
+							str += '<label class="switch"><input type="checkbox" checked="checked" value="'+row.id+'"/><div class="slider toggle-bar-size"></div></label>';
+						}
+						else{
+							str += '<label class="switch"><input type="checkbox" value="'+row.id+'"/><div class="slider toggle-bar-size"></div></label>';
+						}
+						
+						return str;
+					}
+				},
+				{
+					data : 'id',
+					bSortable : false,
+					mRender : function(data, type, row){
+						return '<a href="'+window.contextRoot+'/manage/'+row.id+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+					}
+				}
+			],
+			
+			initComplete: function(){
+				var api = this.api();
+				api.$('.switch input[type="checkbox"]').on('change',function(){
+					var checkbox = $(this);
+					var checked = checkbox.prop('checked');
+					var dMsg = (checked)?'You want to activate the product':
+										'You want to deactivate the product';
+					var value = checkbox.prop('value');
+					
+					bootbox.confirm({
+						size:'medium',
+						title:'Product Activation and Deactivation',
+						message:dMsg,
+						callback: function(confirmed){
+							if(confirmed){
+								console.log(value);
+								
+								var activationURL = window.contextRoot+'/manage/products/'+value+'/activation';
+								$.post(activationURL,function(data){
+									bootbox.alert({
+										size:'medium',
+										title:'information',
+										message: data
+									});
+								});
+								
+							}
+							else{
+								checkbox.prop('checked',!checked);
+							}
+						}
+					});
+				});
+			}
+		});
+	}
+	
+	//------------- Validation code for Category--------------
+	
+	var $categoryForm = $('#categoryForm');
+	if($categoryForm.length){
+		$categoryForm.validate({
+			
+			rules : {
+				name : {
+					required : true,
+					minlength : 2
+				},
+				description : {
+					required : true
+				}
+			},
+			
+			messages : {
+				
+				name : {
+					required : 'Please add the Category name!',
+					minlength : 'Category Name should not be less than 2 characters!'
+				},
+				description : {
+					required : 'Please add the Category description!'
+				}
+			},
+			
+			errorElement: 'em',
+			errorPlacement: function(error,element){
+				error.addClass('help-block');
+				error.insertAfter(element);
+			}
+		});
+	}
+	
+	//--------------------------------
 });

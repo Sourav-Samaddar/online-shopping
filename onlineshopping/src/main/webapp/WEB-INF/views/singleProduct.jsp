@@ -1,7 +1,7 @@
 <div class="container">
 	<!-- Breadcrumb -->
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="${contextRoot}/home">Home</a></li>
 				<li class="breadcrumb-item"><a
@@ -14,14 +14,14 @@
 
 	<div class="row">
 		<!-- Display the product Image -->
-		<div class="col-xs-12 col-sm-4">
+		<div class="col-12 col-sm-4">
 			<div class="thumbnail">
 				<img src="${images}/${product.code}.jpg" class="img img-responsive" />
 			</div>
 
 		</div>
 		<!-- Display the product Description -->
-		<div class="col-xs-12 col-sm-4">
+		<div class="col-12 col-sm-4">
 			<h3>${product.name}</h3>
 			<hr />
 
