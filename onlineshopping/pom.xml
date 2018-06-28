@@ -58,6 +58,19 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>22.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId> <!-- Exclude Project-E from Project-B -->
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
